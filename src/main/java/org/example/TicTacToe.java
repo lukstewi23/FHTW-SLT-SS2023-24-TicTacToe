@@ -1,10 +1,10 @@
 package org.example;
 
 public class TicTacToe {
-    private Player player1;
-    private Player player2;
+    private final Player player1;
+    private final Player player2;
     private Player currentPlayer;
-    private Board board;
+    private final Board board;
 
     public TicTacToe() {
         player1 = new Player('X');
@@ -18,24 +18,25 @@ public class TicTacToe {
         currentPlayer = player1;
     }
 
-    private void switchCurrentPlayer() {
+    public void switchCurrentPlayer() {
         currentPlayer = (currentPlayer == player1) ? player2 : player1;
     }
 
-    private boolean hasWinner() {
-        // Check rows, columns, and diagonals for a win
+    public boolean hasWinner() {
+        char[][] board = this.getBoard().getCells();
+        char marker = currentPlayer.getMarker();
         for (int i = 0; i < 3; i++) {
-            if (board.isCellEmpty(i, 0) && board.isCellEmpty(i, 1) && board.isCellEmpty(i, 2)) {
+            if (board[i][0] == marker && board[i][1] == marker && board[i][2] == marker) {
                 return true;
             }
-            if (board.isCellEmpty(0, i) && board.isCellEmpty(1, i) && board.isCellEmpty(2, i)) {
+            if (board[0][i] == marker && board[1][i] == marker && board[2][i] == marker) {
                 return true;
             }
         }
-        if (board.isCellEmpty(0, 0) && board.isCellEmpty(1, 1) && board.isCellEmpty(2, 2)) {
+        if (board[0][0] == marker && board[1][1] == marker && board[2][2] == marker) {
             return true;
         }
-        if (board.isCellEmpty(0, 2) && board.isCellEmpty(1, 1) && board.isCellEmpty(2, 0)) {
+        if (board[0][2] == marker && board[1][1] == marker && board[2][0] == marker) {
             return true;
         }
         return false;

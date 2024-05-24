@@ -9,13 +9,11 @@ public class Main {
 
         while (true) {
             game.start();
-            while (!game.hasWinner() && !game.getBoard().isFull()) {
-                game.getBoard().print();
-                System.out.println("Current player: " + game.getCurrentPlayer().getMarker());
-                System.out.println("Enter row and column (1-3, separated by a space): ");
+            while (true) {
                 int row = -1;
                 int col = -1;
                 while (true) {
+                    System.out.println("Enter row and column (1-3, separated by a space): ");
                     try {
                         row = scanner.nextInt() - 1;
                         col = scanner.nextInt() - 1;
@@ -34,14 +32,19 @@ public class Main {
                     }
                 }
                 game.getBoard().place(row, col, game.getCurrentPlayer().getMarker());
+
+                if (game.hasWinner() || game.getBoard().isFull()) {
+                    game.getBoard().print();
+                    if (game.hasWinner()) {
+                        System.out.println("Player " + game.getCurrentPlayer().getMarker() + " wins!");
+                    } else {
+                        System.out.println("It's a draw!");
+                    }
+                    break;
+                }
+                game.getBoard().print();
+                System.out.println("Current player: " + game.getCurrentPlayer().getMarker());
                 game.switchCurrentPlayer();
-            }
-            game.getBoard().print();
-            if (game.hasWinner()) {
-                game.switchCurrentPlayer();
-                System.out.println("Player " + game.getCurrentPlayer().getMarker() + " wins!");
-            } else {
-                System.out.println("It's a draw!");
             }
             System.out.println("Play again? (yes/no)");
             String playAgain = scanner.next();

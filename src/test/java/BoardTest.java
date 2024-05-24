@@ -47,4 +47,17 @@ public class BoardTest {
     public void testIsFullNegative() {
         assertFalse(board.isFull());
     }
+
+    @Test
+    public void testClearPositive() {
+        board.place(0, 0, 'X');
+        board.clear();
+        assertTrue(board.isCellEmpty(0, 0));
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testClearNegative() {
+        board.clear();
+        assertFalse(board.isCellEmpty(0, 0));
+    }
 }
