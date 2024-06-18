@@ -1,6 +1,7 @@
 import org.example.Board;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
@@ -63,5 +64,21 @@ public class BoardTest {
         String boardString = board.toString();
         assertFalse(boardString.contains("X"));
         assertFalse(boardString.contains("O"));
+    }
+
+    @Test
+    public void testCheckGameStatus_Positive() {
+        board.place(0, 0, 'X');
+        board.place(0, 1, 'X');
+        board.place(0, 2, 'X');
+        assertEquals('X', board.checkGameStatus());
+    }
+
+    @Test
+    public void testCheckGameStatus_Negative() {
+        board.place(0, 0, 'X');
+        board.place(0, 1, 'X');
+        board.place(0, 2, 'O');
+        assertNotEquals('X', board.checkGameStatus());
     }
 }

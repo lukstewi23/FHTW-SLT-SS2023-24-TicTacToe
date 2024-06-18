@@ -13,6 +13,9 @@ public class Board {
     }
 
     public boolean isCellEmpty(int row, int col) {
+        if (row < 0 || row >= cells.length || col < 0 || col >= cells[row].length) {
+            throw new IllegalArgumentException("Invalid board position");
+        }
         return cells[row][col] == '-';
     }
 
