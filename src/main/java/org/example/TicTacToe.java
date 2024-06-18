@@ -24,4 +24,8 @@ public class TicTacToe {
     public Board getBoard() {
         return board;
     }
+
+    public String displayGameState() {
+        return "Current player: " + currentPlayer.getMarker() + "\n" + board.toString();
+    }
 }

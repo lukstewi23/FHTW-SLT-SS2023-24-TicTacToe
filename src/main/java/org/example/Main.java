@@ -4,9 +4,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Board board = new Board();
+        TicTacToe game = new TicTacToe();
         Scanner scanner = new Scanner(System.in);
-        char marker = 'X';
 
         while (true) {
             int row = -1;
@@ -20,7 +19,7 @@ public class Main {
                         System.out.println("Invalid input. Enter row and column (1-3, separated by a space): ");
                         continue;
                     }
-                    if (!board.isCellEmpty(row, col)) {
+                    if (!game.getBoard().isCellEmpty(row, col)) {
                         System.out.println("Cell is not empty. Enter row and column (1-3, separated by a space): ");
                         continue;
                     }
@@ -30,8 +29,9 @@ public class Main {
                     scanner.next(); // discard invalid input
                 }
             }
-            board.place(row, col, marker);
-            board.print();
+            game.getBoard().place(row, col, game.getCurrentPlayer().getMarker());
+            game.displayGameState();
+            game.switchCurrentPlayer();
         }
     }
 }
