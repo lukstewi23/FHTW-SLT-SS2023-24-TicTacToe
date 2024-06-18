@@ -17,6 +17,9 @@ public class Board {
     }
 
     public void place(int row, int col, char marker) {
+        if (row < 0 || row >= cells.length || col < 0 || col >= cells[row].length) {
+            throw new IllegalArgumentException("Invalid board position");
+        }
         cells[row][col] = marker;
     }
 
