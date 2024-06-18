@@ -38,5 +38,4 @@ public class TicTacToeTest {
         assertTrue(gameState.startsWith("Current player: "));
         assertTrue(gameState.contains("\n"));
     }
-
 }
