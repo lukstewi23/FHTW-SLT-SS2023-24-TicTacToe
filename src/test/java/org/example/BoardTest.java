@@ -35,7 +35,7 @@ public class BoardTest {
     @Test
     public void testToString() {
         String boardString = board.toString();
-        assertEquals(17, boardString.length());
+        assertEquals(29, boardString.length());
         assertTrue(boardString.contains("|"));
         assertTrue(boardString.contains("-"));
     }
