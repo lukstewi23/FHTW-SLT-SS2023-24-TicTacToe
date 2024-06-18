@@ -30,6 +30,7 @@ public class Main {
                 }
             }
             game.getBoard().place(row, col, game.getCurrentPlayer().getMarker());
+            game.getBoard().print(); // print the board state after each move
             char status = game.getBoard().checkGameStatus();
             if (status == 'X' || status == 'O') {
                 System.out.println("Player " + status + " wins!");
