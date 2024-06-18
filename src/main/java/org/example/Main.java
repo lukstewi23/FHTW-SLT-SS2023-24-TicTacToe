@@ -30,6 +30,14 @@ public class Main {
                 }
             }
             game.getBoard().place(row, col, game.getCurrentPlayer().getMarker());
+            char status = game.getBoard().checkGameStatus();
+            if (status == 'X' || status == 'O') {
+                System.out.println("Player " + status + " wins!");
+                break;
+            } else if (status == 'D') {
+                System.out.println("The game is a draw!");
+                break;
+            }
             game.displayGameState();
             game.switchCurrentPlayer();
         }
