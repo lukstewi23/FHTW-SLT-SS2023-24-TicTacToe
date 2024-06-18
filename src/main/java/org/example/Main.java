@@ -33,13 +33,34 @@ public class Main {
             char status = game.getBoard().checkGameStatus();
             if (status == 'X' || status == 'O') {
                 System.out.println("Player " + status + " wins!");
-                break;
+                game = askForNewGame(scanner);
+                if (game == null) {
+                    break;
+                }
             } else if (status == 'D') {
                 System.out.println("The game is a draw!");
-                break;
+                game = askForNewGame(scanner);
+                if (game == null) {
+                    break;
+                }
+            } else {
+                game.displayGameState();
+                game.switchCurrentPlayer();
             }
-            game.displayGameState();
-            game.switchCurrentPlayer();
+        }
+    }
+
+    private static TicTacToe askForNewGame(Scanner scanner) {
+        System.out.println("Do you want to start a new game? (yes/no)");
+        while (true) {
+            String input = scanner.next().trim().toLowerCase();
+            if (input.equals("yes")) {
+                return new TicTacToe();
+            } else if (input.equals("no")) {
+                return null;
+            } else {
+                System.out.println("Invalid input. Do you want to start a new game? (yes/no)");
+            }
         }
     }
 }
