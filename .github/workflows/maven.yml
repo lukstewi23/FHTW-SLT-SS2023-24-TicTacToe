@@ -1,5 +1,6 @@
 name: Java CI with Maven
 
+# test
 on:
   push:
     branches:
