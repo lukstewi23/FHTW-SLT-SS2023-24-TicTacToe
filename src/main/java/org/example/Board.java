@@ -4,15 +4,25 @@ public class Board {
     private char[][] cells;
 
     public Board() {
-        cells = new char[3][3];
-        clear();
+        this.cells = new char[3][3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                cells[i][j] = '-';
+            }
+        }
     }
 
     public boolean isCellEmpty(int row, int col) {
+        if (row < 0 || row >= cells.length || col < 0 || col >= cells[row].length) {
+            throw new IllegalArgumentException("Invalid board position");
+        }
         return cells[row][col] == '-';
     }
 
     public void place(int row, int col, char marker) {
+        if (row < 0 || row >= cells.length || col < 0 || col >= cells[row].length) {
+            throw new IllegalArgumentException("Invalid board position");
+        }
         cells[row][col] = marker;
     }
 
